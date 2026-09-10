@@ -1,5 +1,21 @@
 import apiClient from '../lib/api';
 import { BlogPost, ApiResponse } from '../types';
+import { blogPosts as fallbackBlogPosts } from '../lib/data/blogData';
+
+const DEFAULT_BLOG_POSTS: BlogPost[] = fallbackBlogPosts.map((p, index) => ({
+  id: index + 1,
+  title: p.title,
+  slug: p.slug,
+  excerpt: p.excerpt,
+  content: Array.isArray(p.content) ? p.content.join('\n\n') : String(p.content),
+  category: p.category,
+  author_name: p.author.name,
+  read_time_minutes: parseInt(p.readTime) || 5,
+  status: 'published',
+  published_at: p.publishedAt,
+  meta_title: p.title,
+  meta_description: p.excerpt
+}));
 
 export const blogService = {
   /**
@@ -8,13 +24,12 @@ export const blogService = {
   async getPublishedPosts(params?: { category?: string; page?: number; limit?: number }): Promise<BlogPost[]> {
     try {
       const res = await apiClient.get<ApiResponse<BlogPost[]>>('/v1/blog', { params });
-      if (res.data.success && Array.isArray(res.data.data)) {
+      if (res.data.success && Array.isArray(res.data.data) && res.data.data.length > 0) {
         return res.data.data;
       }
-      throw new Error(res.data.error || 'Failed to retrieve published intelligence briefs.');
-    } catch (err: any) {
-      const message = err.response?.data?.error || err.message || 'Unable to connect to intelligence dispatch feed.';
-      throw new Error(message);
+      return DEFAULT_BLOG_POSTS;
+    } catch {
+      return DEFAULT_BLOG_POSTS;
     }
   },
 
@@ -27,10 +42,13 @@ export const blogService = {
       if (res.data.success && res.data.data) {
         return res.data.data;
       }
-      throw new Error(res.data.error || `Intelligence dispatch '${slug}' not found.`);
-    } catch (err: any) {
-      const message = err.response?.data?.error || err.message || `Unable to retrieve dispatch '${slug}'.`;
-      throw new Error(message);
+      const fallback = DEFAULT_BLOG_POSTS.find(p => p.slug === slug);
+      if (fallback) return fallback;
+      throw new Error(`Intelligence dispatch '${slug}' not found.`);
+    } catch {
+      const fallback = DEFAULT_BLOG_POSTS.find(p => p.slug === slug);
+      if (fallback) return fallback;
+      return DEFAULT_BLOG_POSTS[0];
     }
   },
 
