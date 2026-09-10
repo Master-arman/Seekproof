@@ -1,0 +1,23 @@
+{
+  "name": "seekproof-monorepo",
+  "version": "1.0.0",
+  "description": "SeekProof - Professional Private Investigation & Intelligence Agency Full-Stack Platform",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+    "postinstall": "npm --prefix client install",
+    "dev": "concurrently -n \"SERVER,CLIENT\" -c \"cyan,magenta\" \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "build:server": "npm --prefix server run build",
+    "build:client": "npm --prefix client run build",
+    "build": "npm --prefix client run build",
+    "db:migrate": "npm --prefix server run db:migrate",
+    "db:rollback": "npm --prefix server run db:rollback",
+    "db:seed": "npm --prefix server run db:seed",
+    "db:reset": "npm --prefix server run db:reset"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

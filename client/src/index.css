@@ -1,0 +1,287 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand Matte Navy and Accessible Gold CSS Variables */
+    --primary-navy: #0F1E2E;
+    --dark-navy: #0B1523;
+    --darkest-navy: #070E18;
+    --gold-accent: #D4AF37;
+    --gold-light: #E0C068;
+    --gold-dark: #A88520;
+    --bg-light: #F8FAFC;
+    --card-white: #FFFFFF;
+    --text-slate: #334155;
+    --text-charcoal: #0F172A;
+    --success-green: #16803C;
+    --error-red: #B42318;
+    --border-light: #E2E8F0;
+    --border-navy: #223852;
+
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 43 62% 52%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 212 50% 12%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 43 62% 52%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 43 62% 52%;
+
+    --radius: 0.25rem;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 217 33% 17%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 43 62% 52%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 22%;
+    --input: 217.2 32.6% 22%;
+    --ring: 43 62% 52%;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-[#F8FAFC] text-slate-800 font-sans antialiased;
+  color: #1E293B;
+}
+
+/* Custom Gold Selection */
+::selection {
+  background-color: #D4AF37;
+  color: #070E18;
+}
+
+::-moz-selection {
+  background-color: #D4AF37;
+  color: #070E18;
+}
+
+/* Accessible Focus Ring */
+:focus-visible {
+  outline: 2px solid #0F1E2E;
+  outline-offset: 2px;
+}
+
+/* Utilities for Section Spacing */
+.section-padding {
+  @apply py-16 md:py-24 lg:py-28;
+}
+
+.section-padding-sm {
+  @apply py-12 md:py-16;
+}
+
+.section-padding-lg {
+  @apply py-20 md:py-28 lg:py-36;
+}
+
+/* Light Sections */
+.section-light-alt {
+  @apply bg-[#F1F5F9] text-slate-900 border-y border-slate-200;
+}
+
+.section-white {
+  @apply bg-white text-slate-900;
+}
+
+/* Document & Dossier Cards with 1px Crisp High-Contrast Border and Zero Shadow */
+.card-soft {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: none;
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.card-soft:hover {
+  border-color: #CBD5E1;
+}
+
+/* Subtle Slate Structured Card */
+.card-navy {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: none;
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease;
+}
+
+.card-navy:hover {
+  border-color: #0F1E2E;
+}
+
+/* Gold Accent Lines & Dividers - Sharp & Grounded */
+.gold-divider {
+  height: 2px;
+  width: 36px;
+  background: #D4AF37;
+  border-radius: 1px;
+}
+
+.gold-divider-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Clean Light Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* ==========================================================================
+   GLOBAL DARK THEME OVERRIDES (Triggered by html.dark)
+   ========================================================================== */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #070E18 !important;
+  color: #E2E8F0 !important;
+}
+
+/* Surfaces and Cards */
+html.dark header,
+html.dark nav[aria-label="Desktop Navigation"] {
+  background-color: rgba(11, 21, 35, 0.95) !important;
+  border-color: #1E293B !important;
+}
+
+html.dark .bg-white {
+  background-color: #0F1E2E !important;
+  color: #F8FAFC !important;
+}
+
+html.dark .bg-\[\#F8FAFC\] {
+  background-color: #070E18 !important;
+}
+
+html.dark .bg-\[\#F1F5F9\] {
+  background-color: #0B1523 !important;
+}
+
+html.dark .bg-slate-50 {
+  background-color: #0B1523 !important;
+  border-color: #1E293B !important;
+}
+
+html.dark .bg-slate-100 {
+  background-color: #16283D !important;
+  border-color: #223852 !important;
+  color: #E2E8F0 !important;
+}
+
+html.dark .bg-slate-200 {
+  background-color: #1A2E44 !important;
+}
+
+/* Borders */
+html.dark .border-slate-100,
+html.dark .border-slate-200,
+html.dark .border-slate-300 {
+  border-color: #1E293B !important;
+}
+
+html.dark .hover\:border-slate-300:hover,
+html.dark .hover\:border-slate-400:hover {
+  border-color: #334155 !important;
+}
+
+/* Typography Overrides */
+html.dark .text-slate-900,
+html.dark .text-slate-800,
+html.dark .text-\[\#0F1E2E\] {
+  color: #F8FAFC !important;
+}
+
+html.dark .text-slate-700,
+html.dark .text-slate-600 {
+  color: #94A3B8 !important;
+}
+
+html.dark .text-slate-500 {
+  color: #64748B !important;
+}
+
+/* Interactive & Forms */
+html.dark input,
+html.dark textarea,
+html.dark select {
+  background-color: #0B1523 !important;
+  border-color: #223852 !important;
+  color: #F8FAFC !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #64748B !important;
+}
+
+/* Dark Theme Scrollbar */
+html.dark ::-webkit-scrollbar-track {
+  background: #0B1523;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #1E293B;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+

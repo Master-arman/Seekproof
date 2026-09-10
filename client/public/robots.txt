@@ -1,0 +1,15 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /admin/*
+Disallow: /portal/
+Disallow: /portal/*
+Disallow: /api/
+Disallow: /api/*
+
+# Crawl-delay for crawler politeness
+Crawl-delay: 1
+
+# Sitemap Location
+Sitemap: https://seekproof.in/sitemap.xml
