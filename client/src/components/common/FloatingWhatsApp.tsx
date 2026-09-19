@@ -96,7 +96,7 @@ export function FloatingWhatsApp() {
         </span>
         <WhatsAppIcon className="h-5 w-5 text-[#25D366]" />
         <span className="text-xs font-mono font-bold tracking-tight text-white hidden sm:inline">
-          Confidential WhatsApp
+          WhatsApp
         </span>
       </button>
     </div>
